@@ -1,556 +1,152 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&#45208;&#51032; &#50857;&#46024;&#44592;&#51077;&#51109;</title>
-
-  <style>
-    /* Basic reset for easier layout control */
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Malgun Gothic", Arial, sans-serif;
-      background: #f7fbff;
-      color: #333;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 24px 16px;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 32px;
-      color: #315f7d;
-    }
-
-    header p {
-      margin-top: 8px;
-      color: #667b8c;
-      font-size: 16px;
-    }
-
-    /* Shared card style */
-    .card {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 6px 18px rgba(74, 112, 143, 0.12);
-    }
-
-    .summary {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
-    .summary-card {
-      text-align: center;
-    }
-
-    .summary-card h2 {
-      margin: 0 0 10px;
-      font-size: 16px;
-      color: #536b7f;
-    }
-
-    .summary-card p {
-      margin: 0;
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    /* Mission 1: custom income and expense colors */
-    .income-text,
-    .type-income {
-      color: #1f9f9a;
-      font-weight: bold;
-    }
-
-    .expense-text,
-    .type-expense {
-      color: #f06f61;
-      font-weight: bold;
-    }
-
-    .balance-text {
-      color: #5b8f4d;
-    }
-
-    .form-card {
-      margin-bottom: 20px;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 14px;
-      font-weight: bold;
-      color: #4c6478;
-    }
-
-    input,
-    select {
-      width: 100%;
-      padding: 11px;
-      border: 1px solid #d6e4f0;
-      border-radius: 10px;
-      font-size: 15px;
-      background: #fbfdff;
-    }
-
-    input:focus,
-    select:focus {
-      outline: none;
-      border-color: #8bd7d2;
-      box-shadow: 0 0 0 3px rgba(139, 215, 210, 0.25);
-    }
-
-    .button-area {
-      margin-top: 16px;
-      text-align: right;
-    }
-
-    button {
-      border: none;
-      border-radius: 999px;
-      padding: 11px 18px;
-      cursor: pointer;
-      font-size: 15px;
-      font-weight: bold;
-      transition: 0.2s;
-    }
-
-    button:hover {
-      transform: translateY(-1px);
-      opacity: 0.9;
-    }
-
-    .add-btn {
-      background: #72cbc6;
-      color: white;
-    }
-
-    .filter-area {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      background: #e8f7f6;
-      color: #24736f;
-    }
-
-    .filter-btn.active {
-      background: #54b8b2;
-      color: white;
-    }
-
-    .table-card {
-      overflow-x: auto;
-      margin-bottom: 20px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 780px;
-    }
-
-    th,
-    td {
-      padding: 13px;
-      text-align: center;
-      border-bottom: 1px solid #edf2f7;
-      font-size: 15px;
-    }
-
-    th {
-      background: #eef9f8;
-      color: #42657f;
-    }
-
-    /* Mission 4: make large expenses stand out */
-    .large-expense {
-      font-weight: 900;
-      color: #d94c40;
-    }
-
-    .delete-btn {
-      background: #ffd9d5;
-      color: #a9362c;
-      padding: 8px 13px;
-      font-size: 14px;
-    }
-
-    .empty-message {
-      text-align: center;
-      padding: 24px;
-      color: #7c8da0;
-    }
-
-    .reset-area {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .reset-btn {
-      background: #ffe6ad;
-      color: #8a5b00;
-    }
-
-    footer {
-      text-align: center;
-      color: #8a9aaa;
-      font-size: 13px;
-      margin-top: 20px;
-    }
-
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 26px;
-      }
-
-      .summary {
-        grid-template-columns: 1fr;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .button-area {
-        text-align: center;
-      }
-
-      .add-btn {
-        width: 100%;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&#45208;&#51032; &#54252;&#53944;&#54260;&#47532;&#50724;</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-  <div class="container">
-    <header>
-      <h1>&#45208;&#51032; &#50857;&#46024;&#44592;&#51077;&#51109;</h1>
-      <p>&#49688;&#51077;&#44284; &#51648;&#52636;&#51012; &#44592;&#47197;&#54616;&#47728; &#46024; &#44288;&#47532; &#49845;&#44288;&#51012; &#44600;&#47084;&#50836;</p>
-    </header>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#home">MY PORTFOLIO</a>
 
-    <section class="summary">
-      <div class="card summary-card">
-        <h2>&#52509; &#49688;&#51077;</h2>
-        <p id="totalIncome" class="income-text">0&#50896;</p>
-      </div>
+      <button class="menu-button" id="menuButton" type="button" aria-label="menu">
+        &equiv;
+      </button>
 
-      <div class="card summary-card">
-        <h2>&#52509; &#51648;&#52636;</h2>
-        <p id="totalExpense" class="expense-text">0&#50896;</p>
-      </div>
+      <nav class="nav-menu" id="navMenu">
+        <a href="#about">&#49548;&#44060;</a>
+        <a href="#projects">&#54532;&#47196;&#51229;&#53944;</a>
+        <a href="#skills">&#44592;&#49696;</a>
+        <a href="#contact">&#50672;&#46973;&#52376;</a>
+      </nav>
+    </div>
+  </header>
 
-      <div class="card summary-card">
-        <h2>&#54788;&#51116; &#51092;&#50529;</h2>
-        <p id="balance" class="balance-text">0&#50896;</p>
+  <main>
+    <section id="home" class="hero">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+
+      <div class="container hero-content">
+        <p class="eyebrow">&#48176;&#50864;&#44256; &#49457;&#51109;&#54616;&#45716; &#50937; &#44060;&#48156;&#51088;</p>
+        <h1>&#50504;&#45397;&#54616;&#49464;&#50836;,<br>&#51200;&#45716; &#44608;&#48124;&#51221;&#51077;&#45768;&#45796;.</h1>
+        <p class="hero-text">
+          &#49324;&#50857;&#51088;&#50640;&#44172; &#54200;&#50504;&#54616;&#44256; &#51060;&#54644;&#54616;&#44592; &#49772;&#50868; &#50937; &#44221;&#54744;&#51012; &#47564;&#46300;&#45716; &#44163;&#51012; &#51339;&#50500;&#54633;&#45768;&#45796;.
+          &#51060; &#54856;&#54168;&#51060;&#51648;&#45716; &#51200;&#51032; &#49548;&#44060;, &#44592;&#49696;, &#54532;&#47196;&#51229;&#53944;&#47484; &#45812;&#51008; &#54252;&#53944;&#54260;&#47532;&#50724;&#51077;&#45768;&#45796;.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">&#54532;&#47196;&#51229;&#53944; &#48372;&#44592;</a>
+          <a class="btn btn-secondary" href="#contact">&#50672;&#46973;&#54616;&#44592;</a>
+        </div>
       </div>
     </section>
 
-    <section class="card form-card">
-      <form id="moneyForm">
-        <div class="form-grid">
-          <div>
-            <label for="date">&#45216;&#51676;</label>
-            <input type="date" id="date" />
-          </div>
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">&#49548;&#44060;</h2>
+        <p class="section-desc">
+          &#45208;&#47484; &#49548;&#44060;&#54616;&#45716; &#44277;&#44036;&#51077;&#45768;&#45796;. &#44288;&#49900; &#48516;&#50556;, &#44277;&#48512;&#54616;&#44256; &#51080;&#45716; &#45236;&#50857;, &#50526;&#51004;&#47196; &#47564;&#46308;&#44256; &#49910;&#51008; &#49436;&#48708;&#49828;&#47484; &#51201;&#50612;&#48372;&#49464;&#50836;.
+        </p>
 
-          <div>
-            <label for="type">&#44396;&#48516;</label>
-            <select id="type">
-              <option value="income">&#49688;&#51077;</option>
-              <option value="expense">&#51648;&#52636;</option>
-            </select>
-          </div>
+        <div class="about-grid">
+          <article class="panel">
+            <h3>&#51200;&#45716; &#51060;&#47088; &#49324;&#46988;&#51077;&#45768;&#45796;</h3>
+            <p>
+              HTML, CSS, JavaScript&#47484; &#54876;&#50857;&#54644; &#51649;&#51217; &#44208;&#44284;&#47932;&#51012; &#47564;&#46300;&#45716; &#44284;&#51221;&#51012; &#51600;&#44641;&#45768;&#45796;.
+              &#49324;&#50857;&#51088;&#44032; &#49789;&#44172; &#51060;&#54644;&#54616;&#44256; &#49324;&#50857;&#54624; &#49688; &#51080;&#45716; &#54168;&#51060;&#51648;&#47484; &#47564;&#46300;&#45716; &#45936; &#44288;&#49900;&#51060; &#51080;&#49845;&#45768;&#45796;.
+            </p>
+            <p>
+              &#50526;&#51004;&#47196;&#45716; &#48152;&#51025;&#54805; &#50937;, &#51064;&#53552;&#47001;&#49496;, &#45936;&#51060;&#53552; &#49884;&#44033;&#54868;, UI &#46356;&#51088;&#51064;&#51012; &#45908; &#44277;&#48512;&#54616;&#44256; &#49910;&#49845;&#45768;&#45796;.
+            </p>
+          </article>
 
-          <div>
-            <label for="title">&#54637;&#47785;&#47749;</label>
-            <input type="text" id="title" placeholder="예: 용돈, 간식, 교통비, 문구, 저축" />
-          </div>
+          <aside class="panel profile-card">
+            <div class="profile-image" aria-label="profile image"></div>
+            <h3>&#44608;&#48124;&#51221;</h3>
+            <p>Web Portfolio</p>
+          </aside>
+        </div>
+      </div>
+    </section>
 
-          <div>
-            <label for="amount">&#44552;&#50529;</label>
-            <input type="number" id="amount" placeholder="예: 5000" min="1" />
-          </div>
+    <section id="projects" class="section section-soft">
+      <div class="container">
+        <h2 class="section-title">&#54532;&#47196;&#51229;&#53944;</h2>
+        <p class="section-desc">
+          &#45824;&#54364; &#54532;&#47196;&#51229;&#53944;&#47484; 3&#44060; &#51221;&#46020; &#51221;&#47532;&#54644;&#48372;&#49464;&#50836;. &#51228;&#47785;, &#49444;&#47749;, &#49324;&#50857;&#54620; &#44592;&#49696;, &#47553;&#53356;&#47484; &#45347;&#51004;&#47732; &#51339;&#49845;&#45768;&#45796;.
+        </p>
 
-          <div>
-            <label for="memo">&#47700;&#47784;</label>
-            <input type="text" id="memo" placeholder="간단한 메모" />
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-visual visual-a"></div>
+            <div class="project-body">
+              <h3>&#50857;&#46024;&#44592;&#51077;&#51109; &#50937;&#50545;</h3>
+              <p>&#49688;&#51077;&#44284; &#51648;&#52636;&#51012; &#44592;&#47197;&#54616;&#44256; &#54633;&#44228;&#47484; &#44228;&#49328;&#54616;&#45716; &#48652;&#46972;&#50864;&#51200; &#44592;&#48152; &#50937;&#50545;&#51077;&#45768;&#45796;.</p>
+              <a href="#" class="project-link">&#51088;&#49464;&#55176; &#48372;&#44592;</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual visual-b"></div>
+            <div class="project-body">
+              <h3>&#45208;&#47564;&#51032; &#49548;&#44060; &#54168;&#51060;&#51648;</h3>
+              <p>&#51088;&#44592;&#49548;&#44060;, &#44288;&#49900;&#49324;, &#47785;&#54364;&#47484; &#54620; &#54168;&#51060;&#51648;&#50640; &#51221;&#47532;&#54620; &#48152;&#51025;&#54805; &#50937; &#54168;&#51060;&#51648;&#51077;&#45768;&#45796;.</p>
+              <a href="#" class="project-link">&#51088;&#49464;&#55176; &#48372;&#44592;</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual visual-c"></div>
+            <div class="project-body">
+              <h3>&#54617;&#49845; &#44592;&#47197; &#45432;&#53944;</h3>
+              <p>&#44277;&#48512;&#54620; &#45236;&#50857;&#51012; &#52852;&#46300;&#47196; &#51221;&#47532;&#54616;&#44256; &#45216;&#51676;&#48324;&#47196; &#54869;&#51064;&#54624; &#49688; &#51080;&#45716; &#54617;&#49845; &#44592;&#47197; &#54868;&#47732;&#51077;&#45768;&#45796;.</p>
+              <a href="#" class="project-link">&#51088;&#49464;&#55176; &#48372;&#44592;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <h2 class="section-title">&#44592;&#49696;</h2>
+        <p class="section-desc">
+          &#54788;&#51116; &#44277;&#48512;&#54664;&#44144;&#45208; &#49324;&#50857;&#54624; &#49688; &#51080;&#45716; &#44592;&#49696;&#51012; &#51201;&#45716; &#50689;&#50669;&#51077;&#45768;&#45796;. &#54596;&#50836;&#54616;&#47732; &#54637;&#47785;&#51012; &#52628;&#44032;&#54616;&#44144;&#45208; &#49325;&#51228;&#54616;&#49464;&#50836;.
+        </p>
+
+        <div class="panel">
+          <div class="skills">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Responsive Web</span>
+            <span class="tag">UI Design</span>
+            <span class="tag">GitHub</span>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="button-area">
-          <button type="submit" class="add-btn">&#46321;&#47197;&#54616;&#44592;</button>
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <h2>&#54632;&#44760; &#51060;&#50556;&#44592;&#54644;&#50836;</h2>
+            <p>&#54532;&#47196;&#51229;&#53944; &#51228;&#50504;, &#54801;&#50629;, &#47928;&#51032;&#44032; &#51080;&#45796;&#47732; &#50500;&#47000; &#51060;&#47700;&#51068;&#47196; &#50672;&#46973;&#54644; &#51452;&#49464;&#50836;.</p>
+          </div>
+
+          <a class="btn contact-mail" href="mailto:hello@example.com">hello@example.com</a>
         </div>
-      </form>
+      </div>
     </section>
+  </main>
 
-    <section class="filter-area">
-      <button class="filter-btn active" data-filter="all">&#51204;&#52404; &#48372;&#44592;</button>
-      <button class="filter-btn" data-filter="income">&#49688;&#51077;&#47564; &#48372;&#44592;</button>
-      <button class="filter-btn" data-filter="expense">&#51648;&#52636;&#47564; &#48372;&#44592;</button>
-    </section>
+  <footer class="site-footer">
+    &copy; 2026 &#44608;&#48124;&#51221;. All rights reserved.
+  </footer>
 
-    <section class="card table-card">
-      <table>
-        <thead>
-          <tr>
-            <th>&#48264;&#54840;</th>
-            <th>&#45216;&#51676;</th>
-            <th>&#44396;&#48516;</th>
-            <th>&#54637;&#47785;&#47749;</th>
-            <th>&#44552;&#50529;</th>
-            <th>&#47700;&#47784;</th>
-            <th>&#49325;&#51228;</th>
-          </tr>
-        </thead>
-        <tbody id="recordList"></tbody>
-      </table>
-    </section>
-
-    <section class="reset-area">
-      <button class="reset-btn" id="resetBtn">&#51204;&#52404; &#44592;&#47197; &#52488;&#44592;&#54868;</button>
-    </section>
-
-    <footer>
-      &copy; 2026 &#53356;&#47112;&#50724;&#46356;&#44368;&#50977;&#50672;&#44396;&#49548;
-    </footer>
-  </div>
-
-  <script>
-    /*
-      This beginner-friendly app stores records in localStorage.
-      The code is separated into small functions so future features
-      like monthly search, charts, CSV export, and saving goals can be added.
-    */
-
-    const TEXT = {
-      income: "\uC218\uC785",
-      expense: "\uC9C0\uCD9C",
-      noRecords: "\uC544\uC9C1 \uB4F1\uB85D\uB41C \uAE30\uB85D\uC774 \uC5C6\uC5B4\uC694.",
-      noMemo: "\uBA54\uBAA8 \uC5C6\uC74C",
-      delete: "\uC0AD\uC81C",
-      titleAlert: "\uD56D\uBAA9\uBA85\uC744 \uC785\uB825\uD574 \uC8FC\uC138\uC694.",
-      amountAlert: "\uAE08\uC561\uC740 0\uC6D0\uBCF4\uB2E4 \uD070 \uC22B\uC790\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694.",
-      resetConfirm: "\uC815\uB9D0 \uBAA8\uB4E0 \uAE30\uB85D\uC744 \uC0AD\uC81C\uD560\uAE4C\uC694?"
-    };
-
-    // Load saved records. If there is no saved data, start with an empty list.
-    let records = JSON.parse(localStorage.getItem("moneyRecords")) || [];
-    let currentFilter = "all";
-
-    // Store frequently used HTML elements in variables.
-    const moneyForm = document.getElementById("moneyForm");
-    const dateInput = document.getElementById("date");
-    const typeInput = document.getElementById("type");
-    const titleInput = document.getElementById("title");
-    const amountInput = document.getElementById("amount");
-    const memoInput = document.getElementById("memo");
-    const recordList = document.getElementById("recordList");
-    const totalIncome = document.getElementById("totalIncome");
-    const totalExpense = document.getElementById("totalExpense");
-    const balance = document.getElementById("balance");
-    const resetBtn = document.getElementById("resetBtn");
-    const filterButtons = document.querySelectorAll(".filter-btn");
-
-    // Make today's date in YYYY-MM-DD format.
-    function getTodayDate() {
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, "0");
-      const day = String(today.getDate()).padStart(2, "0");
-      return `${year}-${month}-${day}`;
-    }
-
-    // Format numbers with commas and the Korean won unit.
-    function formatMoney(number) {
-      return Number(number).toLocaleString("ko-KR") + "\uC6D0";
-    }
-
-    // Save records to the browser.
-    function saveRecords() {
-      localStorage.setItem("moneyRecords", JSON.stringify(records));
-    }
-
-    // Calculate total income, expense, and current balance.
-    function updateSummary() {
-      let incomeSum = 0;
-      let expenseSum = 0;
-
-      records.forEach(function(record) {
-        if (record.type === "income") {
-          incomeSum += record.amount;
-        } else {
-          expenseSum += record.amount;
-        }
-      });
-
-      totalIncome.textContent = formatMoney(incomeSum);
-      totalExpense.textContent = formatMoney(expenseSum);
-      balance.textContent = formatMoney(incomeSum - expenseSum);
-    }
-
-    // Draw the record table again whenever data changes.
-    function renderRecords() {
-      recordList.innerHTML = "";
-
-      const filteredRecords = records.filter(function(record) {
-        return currentFilter === "all" || record.type === currentFilter;
-      });
-
-      if (filteredRecords.length === 0) {
-        recordList.innerHTML = `
-          <tr>
-            <td colspan="7" class="empty-message">${TEXT.noRecords}</td>
-          </tr>
-        `;
-        return;
-      }
-
-      filteredRecords.forEach(function(record, index) {
-        const tr = document.createElement("tr");
-        const typeText = record.type === "income" ? TEXT.income : TEXT.expense;
-        const typeClass = record.type === "income" ? "type-income" : "type-expense";
-
-        // Mission 4: expenses of 10,000 won or more are bold.
-        const amountClass = record.type === "expense" && record.amount >= 10000
-          ? "large-expense"
-          : "";
-
-        // Mission 5: show a friendly message when memo is empty.
-        const memoText = record.memo || TEXT.noMemo;
-
-        tr.innerHTML = `
-          <td>${index + 1}</td>
-          <td>${record.date}</td>
-          <td class="${typeClass}">${typeText}</td>
-          <td>${record.title}</td>
-          <td class="${amountClass}">${formatMoney(record.amount)}</td>
-          <td>${memoText}</td>
-          <td>
-            <button class="delete-btn" onclick="deleteRecord(${record.id})">
-              ${TEXT.delete}
-            </button>
-          </td>
-        `;
-
-        recordList.appendChild(tr);
-      });
-    }
-
-    // Clear inputs after adding a record.
-    function clearForm() {
-      dateInput.value = "";
-      typeInput.value = "income";
-      titleInput.value = "";
-      amountInput.value = "";
-      memoInput.value = "";
-    }
-
-    // Add a new income or expense record.
-    function addRecord(event) {
-      event.preventDefault();
-
-      const date = dateInput.value || getTodayDate();
-      const type = typeInput.value;
-      const title = titleInput.value.trim();
-      const amount = Number(amountInput.value);
-      const memo = memoInput.value.trim();
-
-      if (title === "") {
-        alert(TEXT.titleAlert);
-        return;
-      }
-
-      if (!amount || amount <= 0) {
-        alert(TEXT.amountAlert);
-        return;
-      }
-
-      const newRecord = {
-        id: Date.now(),
-        date: date,
-        type: type,
-        title: title,
-        amount: amount,
-        memo: memo
-      };
-
-      records.push(newRecord);
-      saveRecords();
-      updateSummary();
-      renderRecords();
-      clearForm();
-    }
-
-    // Delete one record by id.
-    function deleteRecord(id) {
-      records = records.filter(function(record) {
-        return record.id !== id;
-      });
-
-      saveRecords();
-      updateSummary();
-      renderRecords();
-    }
-
-    // Reset all records after asking the user once.
-    function resetRecords() {
-      if (confirm(TEXT.resetConfirm)) {
-        records = [];
-        saveRecords();
-        updateSummary();
-        renderRecords();
-      }
-    }
-
-    // Change the active filter button and redraw the table.
-    filterButtons.forEach(function(button) {
-      button.addEventListener("click", function() {
-        currentFilter = button.dataset.filter;
-
-        filterButtons.forEach(function(btn) {
-          btn.classList.remove("active");
-        });
-
-        button.classList.add("active");
-        renderRecords();
-      });
-    });
-
-    moneyForm.addEventListener("submit", addRecord);
-    resetBtn.addEventListener("click", resetRecords);
-
-    updateSummary();
-    renderRecords();
-  </script>
+  <script src="js/script.js"></script>
 </body>
 </html>

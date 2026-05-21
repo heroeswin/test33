@@ -1,0 +1,429 @@
+/* 전체 기본 설정 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Pretendard", "Malgun Gothic", Arial, sans-serif;
+  color: #1f2937;
+  background: #f7fafc;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+/* 상단 메뉴 */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid #e5e7eb;
+  backdrop-filter: blur(12px);
+}
+
+.header-inner {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-weight: 800;
+  color: #0f766e;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 22px;
+  color: #4b5563;
+  font-size: 15px;
+}
+
+.nav-menu a:hover {
+  color: #0f766e;
+}
+
+.menu-button {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 12px;
+  background: #e8f7f4;
+  color: #0f766e;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* 첫 화면 */
+.hero {
+  position: relative;
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #eaf7f5;
+}
+
+#heroCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(247, 250, 252, 0.7);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  padding: 92px 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #dff4ef;
+  color: #0f766e;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(40px, 7vw, 74px);
+  line-height: 1.08;
+  color: #111827;
+}
+
+.hero-text {
+  max-width: 620px;
+  margin: 22px 0 30px;
+  color: #374151;
+  font-size: 19px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-weight: 800;
+  transition: 0.2s ease;
+}
+
+.btn-primary {
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: #0f766e;
+  border: 1px solid #b7ded8;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(15, 118, 110, 0.16);
+}
+
+/* 공통 섹션 */
+.section {
+  padding: 76px 0;
+}
+
+.section-soft {
+  background: #eef8f6;
+}
+
+.section-title {
+  margin: 0 0 14px;
+  font-size: 32px;
+  color: #111827;
+}
+
+.section-desc {
+  max-width: 700px;
+  margin: 0 0 30px;
+  color: #6b7280;
+}
+
+.panel,
+.project-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 10px 26px rgba(31, 41, 55, 0.06);
+}
+
+.panel {
+  padding: 26px;
+}
+
+/* 소개 */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+}
+
+.profile-card {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: #fff7ed;
+  border-color: #fed7aa;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 18px;
+  background:
+    radial-gradient(circle at 50% 38%, #f9c6a3 0 20%, transparent 21%),
+    radial-gradient(circle at 50% 72%, #0f766e 0 34%, transparent 35%),
+    #fef3c7;
+  border: 8px solid #ffffff;
+  box-shadow: 0 12px 24px rgba(124, 45, 18, 0.16);
+}
+
+.profile-card h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.profile-card p {
+  margin: 8px 0 0;
+  color: #6b7280;
+}
+
+/* 프로젝트 */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.project-card {
+  overflow: hidden;
+  transition: 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(31, 41, 55, 0.1);
+}
+
+.project-visual {
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-visual::before,
+.project-visual::after {
+  content: "";
+  position: absolute;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.project-visual::before {
+  width: 150px;
+  height: 78px;
+  left: 26px;
+  top: 34px;
+}
+
+.project-visual::after {
+  width: 88px;
+  height: 88px;
+  right: 26px;
+  bottom: -18px;
+}
+
+.visual-a {
+  background: #dff4ef;
+}
+
+.visual-b {
+  background: #fef3c7;
+}
+
+.visual-c {
+  background: #e0e7ff;
+}
+
+.project-body {
+  padding: 20px;
+}
+
+.project-body h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.project-body p {
+  margin: 0 0 14px;
+  color: #6b7280;
+}
+
+.project-link {
+  color: #0f766e;
+  font-weight: 800;
+}
+
+/* 기술 */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #4338ca;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* 연락처 */
+.contact-box {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+  border-radius: 20px;
+  padding: 30px;
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.contact-box h2 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.contact-box p {
+  margin: 0;
+  color: #dff4ef;
+}
+
+.contact-mail {
+  background: #ffffff;
+  color: #0f766e;
+  white-space: nowrap;
+}
+
+.site-footer {
+  padding: 28px 0;
+  text-align: center;
+  color: #6b7280;
+  border-top: 1px solid #e5e7eb;
+  background: #ffffff;
+  font-size: 14px;
+}
+
+/* 모바일 화면 */
+@media (max-width: 860px) {
+  .header-inner {
+    min-height: 64px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+  }
+
+  .menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-menu {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0 4px;
+  }
+
+  .nav-menu.is-open {
+    display: flex;
+  }
+
+  .nav-menu a {
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: #f4fbfa;
+  }
+
+  .hero {
+    min-height: 560px;
+  }
+
+  .about-grid,
+  .project-grid,
+  .contact-box {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-mail {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-content {
+    padding: 72px 0;
+  }
+
+  .hero-text {
+    font-size: 17px;
+  }
+
+  .section {
+    padding: 58px 0;
+  }
+
+  .panel,
+  .contact-box {
+    padding: 22px;
+  }
+}
